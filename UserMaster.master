@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Work Force Management System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en-us" />
+<meta name="description" content="Template" />
+<meta name="keywords" content="" />
+<link rel="stylesheet" type="text/css" href="images/default.css" media="screen"/>
+	</head>
+	<body>
+	<form id="form1" runat="server">
+		<div id="wrapper">
+			
+			<div id="top_nav">
+				<ul>
+					
+					<li><a href="About_us.aspx">About Us</a></li>
+					<li><a href="Contact_us.aspx">Contact Us</a></li>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Admin/AdminLogin.aspx">Admin Login</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/UserLogin.aspx">User Login</asp:HyperLink>
+				</ul>
+			</div>
+			
+			<div id="header">
+				<div id="logo">
+					Work Force Management System<span class="color"></span>
+				</div>
+			</div>
+			
+			<div id="breadcrumb"></div>
+			<div id="content">
+			
+			  <div id="l_col">
+				  <h3>&nbsp;</h3>
+					
+					<h3>Reports</h3>
+					<ul>
+						<li><a href="UserHome.aspx?id=t">My Assigned Project </a></li>
+						<li><a href="UserHome.aspx?id=ct">My Assigned Tasks </a></li>
+						<li><a href="Open.aspx">Open In </a></li>
+						<li><a href="Close.aspx">Close Out </a></li>
+						
+						
+					</ul>
+					<br />
+				</div>
+				
+				<div id="r_col" style="border-right: #009DE4 thin solid; border-top: #009DE4 thin solid; border-left: #009DE4 thin solid; border-bottom: #009DE4 thin solid">
+					<h1>&nbsp;</h1>
+						<p>
+                            <asp:ContentPlaceHolder ID="cphUserMaster" runat="server">
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                            </asp:ContentPlaceHolder>
+                            &nbsp;</p>
+				</div>
+				
+				<br clear="all" />
+			</div>
+			
+			<div id="footer">
+				&copy;  WorkForce Management System| Design by 
+                DLK Tech</div>
+		</div>
+		</form>
+	</body>
+</html>

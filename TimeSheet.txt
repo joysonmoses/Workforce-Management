@@ -1,0 +1,883 @@
+USE [timesheet]
+GO
+/****** Object:  Table [dbo].[tblUserGroup]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblUserGroup](
+	[UG_ID] [int] IDENTITY(1,1) NOT NULL,
+	[UG_Name] [varchar](250) NOT NULL,
+	[UG_Description] [varchar](1000) NOT NULL,
+	[UG_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblUserGroup] PRIMARY KEY CLUSTERED 
+(
+	[UG_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblUser]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblUser](
+	[U_ID] [int] IDENTITY(1,100) NOT NULL,
+	[U_Name] [varchar](250) NOT NULL,
+	[U_UserName] [varchar](60) NOT NULL,
+	[U_Password] [varchar](30) NOT NULL,
+	[U_Phone] [varchar](15) NOT NULL,
+	[U_Email] [varchar](120) NULL,
+	[U_AccessLevel] [bit] NOT NULL,
+	[U_UserGroup] [varchar](60) NULL,
+	[U_DOJ] [datetime] NOT NULL,
+	[U_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblUser] PRIMARY KEY CLUSTERED 
+(
+	[U_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblTask]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblTask](
+	[T_ID] [int] IDENTITY(1,1) NOT NULL,
+	[T_Name] [varchar](250) NOT NULL,
+	[T_Description] [varchar](1000) NOT NULL,
+	[T_Project] [int] NOT NULL,
+	[T_AssignedUser] [varchar](250) NOT NULL,
+	[T_StartDate] [datetime] NOT NULL,
+	[T_EndDate] [datetime] NOT NULL,
+	[T_Priority] [int] NOT NULL,
+	[T_Status] [int] NOT NULL,
+	[T_EstimatedHours] [decimal](18, 0) NOT NULL,
+	[T_ActualHours] [decimal](18, 0) NULL,
+	[T_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblTask] PRIMARY KEY CLUSTERED 
+(
+	[T_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblStatus]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblStatus](
+	[S_ID] [int] IDENTITY(1,1) NOT NULL,
+	[S_Name] [varchar](100) NOT NULL,
+	[S_Description] [varchar](1000) NOT NULL,
+	[S_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblStatus] PRIMARY KEY CLUSTERED 
+(
+	[S_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblProject]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblProject](
+	[P_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Pro_Name] [varchar](250) NOT NULL,
+	[P_Description] [varchar](1000) NOT NULL,
+	[P_CreatedBy] [varchar](1000) NULL,
+	[P_StartDate] [datetime] NOT NULL,
+	[P_EndDate] [datetime] NOT NULL,
+	[P_Platform] [int] NOT NULL,
+	[P_Priority] [int] NOT NULL,
+	[P_Status] [int] NOT NULL,
+	[P_EstimatedHours] [decimal](18, 0) NOT NULL,
+	[P_ActualHours] [decimal](18, 0) NULL,
+	[P_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblProject] PRIMARY KEY CLUSTERED 
+(
+	[P_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblPriorities]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblPriorities](
+	[P_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Pri_Name] [varchar](100) NOT NULL,
+	[P_Description] [varchar](1000) NOT NULL,
+	[P_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblPriorities] PRIMARY KEY CLUSTERED 
+(
+	[P_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblPlatform]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblPlatform](
+	[P_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Plot_Name] [varchar](100) NOT NULL,
+	[P_Description] [varchar](1000) NOT NULL,
+	[P_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblPlatform] PRIMARY KEY CLUSTERED 
+(
+	[P_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblOpenIn]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblOpenIn](
+	[O_ID] [int] IDENTITY(1,1) NOT NULL,
+	[O_Task_ID] [int] NOT NULL,
+	[O_OpenTime] [datetime] NOT NULL,
+	[O_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblOpenIn] PRIMARY KEY CLUSTERED 
+(
+	[O_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblCloseOut]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblCloseOut](
+	[C_ID] [int] IDENTITY(1,1) NOT NULL,
+	[C_Task_ID] [int] NOT NULL,
+	[C_CloseTime] [datetime] NOT NULL,
+	[C_TimeSpent] [datetime] NOT NULL,
+	[C_Status] [bit] NOT NULL,
+	[C_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblCloseOut] PRIMARY KEY CLUSTERED 
+(
+	[C_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblAssign]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblAssign](
+	[A_ID] [int] IDENTITY(1,1) NOT NULL,
+	[A_Task_ID] [int] NULL,
+	[A_Project_ID] [int] NULL,
+	[A_User_ID] [int] NULL,
+ CONSTRAINT [PK_tblAssign] PRIMARY KEY CLUSTERED 
+(
+	[A_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblAdmin]    Script Date: 03/08/2017 16:09:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblAdmin](
+	[A_ID] [int] IDENTITY(1,1) NOT NULL,
+	[A_Name] [varchar](100) NOT NULL,
+	[A_Role] [varchar](100) NOT NULL,
+	[A_UserName] [varchar](100) NOT NULL,
+	[A_Password] [varchar](100) NOT NULL,
+	[A_Active] [bit] NOT NULL,
+ CONSTRAINT [PK_tblAdmin] PRIMARY KEY CLUSTERED 
+(
+	[A_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spUserGroup_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   procedure [dbo].[spUserGroup_Insert](
+@UG_ID int Output,
+@UG_Name Varchar(250),
+@UG_Description Varchar(1000),
+@UG_Active BIT
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblUserGroup(UG_Name,UG_Description,UG_Active) VALUES(@UG_Name,@UG_Description,@UG_Active)
+SET @UG_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spUserGroup_Fill]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spUserGroup_Fill] (
+	@UG_ID INT = 0
+) AS
+SET NOCOUNT ON
+IF (@UG_ID = 0)
+	SELECT UG_ID,UG_Name FROM tblUserGroup ORDER BY UG_Name
+ELSE
+	SELECT UG_ID,UG_Name FROM tblUserGroup WHERE UG_ID = @UG_ID AND UG_Active = 1 ORDER BY UG_Name
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spUserGroup_ExistUserGroup]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   PROCEDURE [dbo].[spUserGroup_ExistUserGroup] (  
+ @UG_Name VARCHAR(60)  
+   
+) AS  
+
+BEGIN
+SET NOCOUNT ON  
+SELECT UG_Name FROM tblUserGroup WHERE UG_Name = @UG_Name  
+SET NOCOUNT OFF
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spUser_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   procedure [dbo].[spUser_Insert](
+@U_ID Int Output,
+@U_Name Varchar(250),
+@U_UserName Varchar(60),
+@U_Password Varchar(30),
+@U_Phone Varchar(15),
+@U_Email Varchar(120),
+@U_AccessLevel BIT,
+@U_UserGroup Varchar(60),
+@U_DOJ DateTime,
+@U_Active BIT
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblUser(U_Name,U_UserName,U_Password,U_Phone,U_Email,U_AccessLevel,U_UserGroup,U_DOJ,U_Active) VALUES
+(@U_Name,@U_UserName,@U_Password,@U_Phone,@U_Email,@U_AccessLevel,@U_UserGroup,@U_DOJ,@U_Active)
+SET @U_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spUser_Fill]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spUser_Fill] (
+	@U_ID INT = 0
+) AS
+SET NOCOUNT ON
+IF (@U_ID = 0)
+	SELECT U_ID,U_Name FROM tblUser ORDER BY U_Name
+ELSE
+	SELECT U_ID,U_Name FROM tblUser WHERE U_ID = @U_ID AND U_Active = 1 ORDER BY U_Name
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spUser_ExistUserName]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   PROCEDURE [dbo].[spUser_ExistUserName] (  
+ @U_Username VARCHAR(60)  
+   
+) AS  
+
+BEGIN
+SET NOCOUNT ON  
+SELECT U_UserName FROM tblUser WHERE U_Username = @U_Username  
+SET NOCOUNT OFF
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spUser_Check]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  procedure [dbo].[spUser_Check](
+@U_UserName VARCHAR(250),
+@U_Password VARCHAR(250)
+) As
+
+SET NOCOUNT ON
+Begin
+
+SELECT U_Username,U_Password FROM tblUser WHERE U_UserName = @U_UserName AND 
+U_Password = @U_Password AND U_Active = 1
+
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spTask_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE    procedure [dbo].[spTask_Insert](
+@T_ID Int Output,
+@T_Name Varchar(250),
+@T_Description Varchar(1000),
+@T_Project Int,
+@T_AssignedUser Varchar(250),
+@T_StartDate DateTime,
+@T_EndDate DateTime,
+@T_Priority Int,
+@T_Status Int,
+@T_EstHrs Decimal,
+@T_Active BIT
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblTask (T_Name,T_Description,T_Project,T_AssignedUser,T_StartDate,T_EndDate,T_Priority,T_Status,T_EstimatedHours,T_Active) VALUES
+(@T_Name,@T_Description,@T_Project,@T_AssignedUser,@T_StartDate,@T_EndDate,@T_Priority,@T_Status,@T_EstHrs,@T_Active)
+
+SET @T_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spTask_Fill]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE     PROCEDURE [dbo].[spTask_Fill] (
+	@T_ID INT = 0
+) AS
+SET NOCOUNT ON 
+IF (@T_ID = 0)
+	SELECT tblAssign.A_Task_ID,tblTask.T_ID,tblTask.T_Name,tblTask.T_StartDate,tblTask.T_EndDate,tbltask.T_EstimatedHours FROM tblAssign,tblTask WHERE tblAssign.A_Task_ID = tblTask.T_ID
+ELSE
+	SELECT tblAssign.A_Task_ID,tblTask.T_ID,tblTask.T_Name,tblTask.T_StartDate,tblTask.T_EndDate,tbltask.T_EstimatedHours FROM tblAssign,tblTask WHERE tblAssign.A_Task_ID = tblTask.T_ID AND tblTask.T_ID = @T_ID
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spTask_ExistTask]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   PROCEDURE [dbo].[spTask_ExistTask] (  
+ @T_Name VARCHAR(250)  
+   
+) AS  
+
+BEGIN
+SET NOCOUNT ON  
+SELECT T_Name FROM tblTask WHERE T_Name = @T_Name
+SET NOCOUNT OFF
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spStatus_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   procedure [dbo].[spStatus_Insert](
+@S_ID int Output,
+@S_Name Varchar(250),
+@S_Description Varchar(1000),
+@S_Active BIT
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblStatus(S_Name,S_Description,S_Active) VALUES(@S_Name,@S_Description,@S_Active)
+SET @S_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spStatus_Fill]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[spStatus_Fill] (
+	@S_ID INT = 0
+) AS
+SET NOCOUNT ON
+IF (@S_ID = 0)
+	SELECT S_ID,S_Name FROM tblStatus ORDER BY S_Name
+ELSE
+	SELECT S_ID,S_Name FROM tblStatus WHERE S_ID = @S_ID AND S_Active = 1 ORDER BY S_Name
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spStatus_ExistStatus]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   PROCEDURE [dbo].[spStatus_ExistStatus] (  
+ @S_Name VARCHAR(60)  
+   
+) AS  
+
+BEGIN
+SET NOCOUNT ON  
+SELECT S_Name FROM tblStatus WHERE S_Name = @S_Name
+SET NOCOUNT OFF
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spReport_User]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spReport_User] (
+	@U_ID INT = 0
+) AS
+SET NOCOUNT ON
+IF (@U_ID = 0)
+	SELECT tblUser.U_ID UserID,tblUser.U_Name UserName,tblTask.T_Name TaskName,
+	tblAssign.A_Task_ID TaskID FROM tblUser,tblTask,tblAssign WHERE
+	tblUser.U_ID = tblAssign.A_User_ID AND tblTask.T_ID = tblAssign.A_Task_ID
+ELSE
+	SELECT tblUser.U_ID UserID,tblUser.U_Name UserName,tblTask.T_Name TaskName,
+	tblAssign.A_Task_ID TaskID FROM tblUser,tblTask,tblAssign WHERE
+	tblUser.U_ID = tblAssign.A_User_ID AND tblTask.T_ID = tblAssign.A_Task_ID AND
+	tblUser.U_ID = @U_ID
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spReport_UnAssignedTask]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE  PROCEDURE [dbo].[spReport_UnAssignedTask] (
+	@UT_ID INT = 0
+) AS
+SET NOCOUNT ON
+
+SELECT T_ID ID,T_Name Name,T_StartDate StartDate,T_EndDate EndDate,T_EstimatedHours EstHrs
+FROM tblTask WHERE T_ID NOT IN (SELECT A_Task_ID FROM tblAssign)
+
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spReport_Project]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spReport_Project] (
+	@P_ID INT = 0
+) AS
+SET NOCOUNT ON
+IF (@P_ID = 0)
+	SELECT Pro_Name Name,P_StartDate StartDate,P_EndDate EndDate,P_EstimatedHours EstHrs FROM tblProject WHERE P_Active = 1 ORDER BY Name
+ELSE
+	SELECT Pro_Name Name,P_StartDate StartDate,P_EndDate EndDate,P_EstimatedHours EstHrs FROM tblProject WHERE P_Active = 1 AND P_ID = @P_ID ORDER BY Name
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spReport_IncompletedTask]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spReport_IncompletedTask] (
+	@IT_ID INT = 0
+) AS
+SET NOCOUNT ON
+
+SELECT tblTask.T_ID TaskID,tblTask.T_Name TaskName,tblOpenIn.O_OpenTime OpenTime
+FROM tblTask,tblOpenIn WHERE tblTask.T_ID = tblOpenIn.O_Task_ID
+
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spReport_CompletedTask]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spReport_CompletedTask] (
+	@CT_ID INT = 0
+) AS
+SET NOCOUNT ON
+
+SELECT tblTask.T_ID TaskID,tblTask.T_Name TaskName,tblCloseOut.C_CloseTime CloseTime,
+tblCloseOut.C_TimeSpent SpentTime,tblCloseOut.C_Status OnTimeCompleted FROM tblTask,
+tblCloseOut WHERE tblTask.T_ID =  tblCloseOut.C_Task_ID
+
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spReport_AssignedTask]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spReport_AssignedTask] (
+	@AT_ID INT = 0
+) AS
+SET NOCOUNT ON
+
+SELECT tblAssign.A_Task_ID TaskID,tblTask.T_Name TaskName,tblProject.Pro_Name ProjectName,
+tblUser.U_Name UserName FROM tblAssign,tblTask,tblProject,tblUser WHERE 
+tblTask.T_ID = tblAssign.A_Task_ID AND tblProject.P_ID = tblAssign.A_Project_ID AND
+tblUser.U_ID = tblAssign.A_User_ID
+
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spProject_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   procedure [dbo].[spProject_Insert](
+@P_ID Int Output,
+@Pro_Name Varchar(250),
+@P_Description Varchar(1000),
+@P_CreatedBy Varchar(1000),
+@P_StartDate DateTime,
+@P_EndDate DateTime,
+@P_Platform Int,
+@P_Priority Int,
+@P_Status Int,
+@P_EstHrs Decimal,
+@P_Active BIT
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblProject (Pro_Name,P_Description,P_CreatedBy,P_StartDate,P_EndDate,P_Platform,P_Priority,P_Status,P_EstimatedHours,P_Active) VALUES
+(@Pro_Name,@P_Description,@P_CreatedBy,@P_StartDate,@P_EndDate,@P_Platform,@P_Priority,@P_Status,@P_EstHrs,@P_Active)
+SET @P_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spProject_Fill]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spProject_Fill] (
+	@P_ID INT = 0
+) AS
+SET NOCOUNT ON
+IF (@P_ID = 0)
+	SELECT P_ID,Pro_Name FROM tblProject ORDER BY Pro_Name
+ELSE
+	SELECT P_ID,Pro_Name FROM tblProject WHERE P_ID = @P_ID AND P_Active = 1 ORDER BY Pro_Name
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spProject_ExistProject]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   PROCEDURE [dbo].[spProject_ExistProject] (  
+ @Pro_Name VARCHAR(250)  
+   
+) AS  
+
+BEGIN
+SET NOCOUNT ON  
+SELECT Pro_Name FROM tblProject WHERE Pro_Name = @Pro_Name
+SET NOCOUNT OFF
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spPriority_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  procedure [dbo].[spPriority_Insert](
+@P_ID int Output,
+@Pri_Name Varchar(250),
+@P_Description Varchar(1000),
+@P_Active BIT
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblPriorities(Pri_Name,P_Description,P_Active) VALUES(@Pri_Name,@P_Description,@P_Active)
+SET @P_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spPriority_Fill]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spPriority_Fill] (
+	@P_ID INT = 0
+) AS
+SET NOCOUNT ON
+IF (@P_ID = 0)
+	SELECT P_ID,Pri_Name FROM tblPriorities ORDER BY Pri_Name
+ELSE
+	SELECT P_ID,Pri_Name FROM tblPriorities WHERE P_ID = @P_ID AND P_Active = 1 ORDER BY Pri_Name
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spPriority_ExistPriority]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE    PROCEDURE [dbo].[spPriority_ExistPriority] (  
+ @Pri_Name VARCHAR(60)  
+   
+) AS  
+
+BEGIN
+SET NOCOUNT ON  
+SELECT Pri_Name FROM tblPriorities WHERE Pri_Name = @Pri_Name
+SET NOCOUNT OFF
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spPlatform_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   procedure [dbo].[spPlatform_Insert](
+@P_ID int Output,
+@Plot_Name Varchar(250),
+@P_Description Varchar(1000),
+@P_Active BIT
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblPlatform(Plot_Name,P_Description,P_Active) VALUES(@Plot_Name,@P_Description,@P_Active)
+SET @P_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spPlatform_Fill]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spPlatform_Fill] (
+	@P_ID INT = 0
+) AS
+SET NOCOUNT ON
+IF (@P_ID = 0)
+	SELECT P_ID,Plot_Name FROM tblPlatform ORDER BY Plot_Name
+ELSE
+	SELECT P_ID,Plot_Name FROM tblPlatform WHERE P_ID = @P_ID AND P_Active = 1 ORDER BY Plot_Name
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spPlatform_ExistPlatform]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   PROCEDURE [dbo].[spPlatform_ExistPlatform] (  
+ @Plot_Name VARCHAR(60)  
+   
+) AS  
+
+BEGIN
+SET NOCOUNT ON  
+SELECT Plot_Name FROM tblPlatform WHERE Plot_Name = @Plot_Name
+SET NOCOUNT OFF
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spOpenIn_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  procedure [dbo].[spOpenIn_Insert](
+@O_ID Int Output,
+@O_Task_ID Int,
+@O_OpenTime DateTime,
+@O_Active BIT
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblOpenIn(O_Task_ID,O_OpenTime,O_Active) VALUES(@O_Task_ID,@O_OpenTime,@O_Active)
+SET @O_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spOpen_ExistTask]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   PROCEDURE [dbo].[spOpen_ExistTask] (  
+ @O_Task_ID INT  
+   
+) AS  
+
+BEGIN
+SET NOCOUNT ON  
+SELECT O_Task_ID FROM tblOpenIn WHERE O_Task_ID = @O_Task_ID
+SET NOCOUNT OFF
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spGetDates]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  PROCEDURE [dbo].[spGetDates] (
+	@P_ID INT = 0
+) AS
+SET NOCOUNT ON
+IF (@P_ID = 0)
+	SELECT P_ID,P_StartDate,P_EndDate FROM tblProject
+ELSE
+	SELECT P_ID,P_StartDate,P_EndDate FROM tblProject WHERE P_ID = @P_ID AND P_Active = 1
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spCloseOut_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[spCloseOut_Insert](
+@C_ID Int Output,
+@C_Task_ID Int,
+@C_CloseTime DateTime,
+@C_TimeSpent DateTime,
+@C_Status BIT,
+@C_Active BIT
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblCloseOut(C_Task_ID,C_CloseTime,C_TimeSpent,C_Status,C_Active) VALUES(@C_Task_ID,@C_CloseTime,@C_TimeSpent,@C_Status,@C_Active)
+SET @C_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spClose_SelectTask]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE      PROCEDURE [dbo].[spClose_SelectTask] (
+	@T_ID INT = 0
+) AS
+SET NOCOUNT ON IF (@T_ID = 0)
+	SELECT tblOpenIn.O_Task_ID,tblOpenIn.O_OpenTime,tblTask.T_ID,tblTask.T_Name,tblTask.T_EstimatedHours FROM tblOpenIn,tblTask WHERE tblOpenIn.O_Task_ID = tblTask.T_ID
+ELSE
+	SELECT tblOpenIn.O_Task_ID,tblOpenIn.O_OpenTime,tblTask.T_ID,tblTask.T_Name,tblTask.T_EstimatedHours FROM tblOpenIn,tblTask WHERE tblOpenIn.O_Task_ID = tblTask.T_ID AND tblTask.T_ID = @T_ID
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spClose_ExistTask]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE   PROCEDURE [dbo].[spClose_ExistTask] (  
+ @C_Task_ID INT  
+   
+) AS  
+
+BEGIN
+SET NOCOUNT ON  
+SELECT C_Task_ID FROM tblCloseOut WHERE C_Task_ID = @C_Task_ID
+SET NOCOUNT OFF
+END
+GO
+/****** Object:  StoredProcedure [dbo].[spAssignTask_Insert]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[spAssignTask_Insert](
+@A_ID int Output,
+@A_Task_ID int,
+@A_Project_ID int,
+@A_User_ID int
+
+) As
+
+SET NOCOUNT ON
+Begin
+INSERT INTO tblAssign(A_Task_ID,A_Project_ID,A_User_ID) VALUES(@A_Task_ID,@A_Project_ID,@A_User_ID)
+SET @A_ID = @@Identity
+RETURN @@ROWCOUNT
+End 
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[spAdmin_Check]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[spAdmin_Check](
+	@Username VARCHAR(100),
+	@Password NVARCHAR(100)
+) AS
+SET NOCOUNT ON
+BEGIN
+	SELECT A_UserName, A_Password FROM tblAdmin WHERE A_Username = @Username AND A_Password = @Password AND A_Active = 1
+END
+SET NOCOUNT OFF
+GO
+/****** Object:  StoredProcedure [dbo].[Sp_profile_update]    Script Date: 03/08/2017 16:09:55 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE proc [dbo].[Sp_profile_update](@U_Name varchar(250),@U_Phone varchar(15),@U_Email varchar(120),@U_DOJ datetime)
+as
+update tblUser set U_Phone=@U_Phone,U_Email=@U_Email,U_DOJ=@U_DOJ where U_Name=@U_Name
+GO
